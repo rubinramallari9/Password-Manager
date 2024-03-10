@@ -1,6 +1,6 @@
 from tkinter import *
 
-
+BACKGROUND_COLOR = "#50b7ba"
 
 class user_interface(Tk):
 
@@ -8,10 +8,12 @@ class user_interface(Tk):
 
         super().__init__()
         self.title("Password Manager")
-        self.minsize(width=500, height=500)
+        self.icon_photo = PhotoImage(file="../images/image.png")
+        self.wm_iconphoto(False, self.icon_photo)
         self.config(background="#50b7ba")
         self.resizable(False, False)
         self.login_Frame()
+
 
     def login(self):
         self.email = self.emailEntry.get()
@@ -22,9 +24,17 @@ class user_interface(Tk):
         self.register_frame.tkraise()
     def login_Frame(self):
 
-        self.login_win = Frame(self, bg="#50b7ba")
+        self.login_win = Frame(self, bg=BACKGROUND_COLOR)
         self.login_win.grid(row=1, column=1)
         self.login_win.tkraise()
+
+        #Profile Picture
+        canvas = Canvas(width=220, height=240, background=BACKGROUND_COLOR, highlightthickness=0)
+        self.profile_picture_photo = PhotoImage(file="../images/image.png")
+        self.profile_picture = canvas.create_image(110, 120, image=self.profile_picture_photo)
+        canvas.grid(row=0, column=1)
+
+
         #Input
 
         self.emailEntry = Entry(self.login_win, width=50)
@@ -38,15 +48,15 @@ class user_interface(Tk):
 
         #Buttons
 
-        self.login_button = Button(self.login_win, text="Log in", width=43, command=self.login)
-        self.login_button.grid(row=3, column=1, pady=10,padx=50)
+        login_button = Button(self.login_win, text="Log in", width=43, command=self.login)
+        login_button.grid(row=3, column=1, pady=10,padx=50)
 
-        self.register_button = Button(self.login_win,   text="Register", width=43, command=self.register)
-        self.register_button.grid(row=4, column=1, pady=10,padx=50)
+        register_button = Button(self.login_win,   text="Register", width=43, command=self.register)
+        register_button.grid(row=4, column=1, pady=10,padx=50)
 
 
-        self.forgot_password_button = Button(self.login_win,text="Forgot password", width=43, command=...)
-        self.forgot_password_button.grid(row=5,column=1, pady=10, padx=50)
+        forgot_password_button = Button(self.login_win,text="Forgot password", width=43, command=...)
+        forgot_password_button.grid(row=5,column=1, pady=20, padx=50)
 
     def register_Frame(self):
         self.register_frame = Frame(self)
