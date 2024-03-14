@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="370c6e5b-42ce-42e8-9728-957f49f06cf6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/scripts/twofactor_a.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/2FA.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/user_interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/user_interface.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,6 +26,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/scripts/2FA.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/scripts/user_interface.py" root0="SKIP_INSPECTION" />
   </component>
   <component name="ProjectColorInfo">{
@@ -40,7 +43,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "last_opened_file_path": "C:/Users/rubin/Desktop/Password-Manager",
-    "settings.editor.selected.configurable": "vcs.Git"
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
   }
 }]]></component>
   <component name="RunManager">
