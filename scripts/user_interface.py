@@ -1,5 +1,7 @@
 from tkinter import *
 from twofactor_a import send_verifcationCode
+from check import check
+
 
 BACKGROUND_COLOR = "#50b7ba"
 
@@ -17,11 +19,12 @@ class user_interface(Tk):
 
 
     def login(self):
-        self.email = self.emailEntry.get()
-        self.password = self.passwordEntry.get()
-        print(self.email, self.password)
-
-
+        username_ = self.username.get()
+        email = self.emailEntry.get()
+        password = self.passwordEntry.get()
+        check(username=username_, email=email, password=password, function=self.main_Frame)
+    def delete(self, event):
+        event.widget.delete(0, END)
 
     def login_Frame(self):
 
@@ -37,27 +40,33 @@ class user_interface(Tk):
 
 
         #Input
+        self.username = Entry(login_win, width=50)
+        self.username.bind("<FocusIn>", func=self.delete)
+        self.username.insert(0, "Username")
+        self.username.grid(row=1,column=1)
+
 
         self.emailEntry = Entry(login_win, width=50)
+        self.emailEntry.bind("<FocusIn>", func=self.delete)
         self.emailEntry.insert(0,"Email slot")
-        self.emailEntry.grid(row=1,column=1, pady=20, padx=50)
-
+        self.emailEntry.grid(row=2,column=1, pady=20, padx=50)
 
         self.passwordEntry = Entry(login_win, width=50)
         self.passwordEntry.insert(0,"Password slot")
-        self.passwordEntry.grid(row=2,column=1, pady=20,padx=50)
+        self.passwordEntry.grid(row=3,column=1, padx=50)
+        self.passwordEntry.bind("<FocusIn>", func=self.delete)
 
         #Buttons
 
-        login_button = Button(login_win, text="Log in", width=43, command=self.main_Frame)
-        login_button.grid(row=3, column=1, pady=10,padx=50)
+        login_button = Button(login_win, text="Log in", width=43, command=self.login)
+        login_button.grid(row=4, column=1, pady=10,padx=50)
 
         register_button = Button(login_win,   text="Register", width=43, command=self.register_Frame)
-        register_button.grid(row=4, column=1, pady=10,padx=50)
+        register_button.grid(row=5, column=1, pady=10,padx=50)
 
 
         forgot_password_button = Button(login_win,text="Forgot password", width=43, command=self.forgot_password)
-        forgot_password_button.grid(row=5,column=1, pady=20, padx=50)
+        forgot_password_button.grid(row=6,column=1, pady=10, padx=50)
 
         return login_win
 
@@ -82,6 +91,10 @@ class user_interface(Tk):
         self.new_Email.grid(row=2,column=1,pady=10, padx=30)
         self.new_Password.grid(row=3, column=1, pady=10, padx=30)
 
+        self.new_UserName.bind("<FocusIn>", func=self.delete)
+        self.new_Email.bind("<FocusIn>", func=self.delete)
+        self.new_Password.bind("<FocusIn>", func=self.delete)
+
         #Button
 
         confirm_button = Button(register_frame ,text="Confirm", width=43, command=...)
@@ -104,6 +117,9 @@ class user_interface(Tk):
         self.email_entry.grid(row=2, column=1, columnspan=2, padx= 20, pady=5)
         self.password_entry.grid(row=3, column=1, padx=20, pady=5)
 
+        self.website_entry.bind("<FocusIn>", func=self.delete)
+        self.email_entry.bind("<FocusIn>", func=self.delete)
+        self.password_entry.bind("<FocusIn>", func=self.delete)
 
 
 
@@ -124,6 +140,7 @@ class user_interface(Tk):
         self.user_email_F = Entry(forgotPassword_frame,   width=50)
         self.user_email_F.insert(0,"Email Slot")
         self.user_email_F.grid(row=1, column=1, padx = 20 , pady=10)
+        self.user_email_F.bind("<FocusIn>", func=self.delete)
 
         self.btn_send_2FA = Button(forgotPassword_frame,text="Send Code",width=43 , command=self.confirmation)
         self.btn_send_2FA.grid(row=2, column=1, padx= 20,pady=10, columnspan=2)
@@ -133,6 +150,7 @@ class user_interface(Tk):
         self.user_email_F.grid_remove()
         self.twoFA_code = Entry(self.current_frame, width=50)
         self.twoFA_code.insert(0,"Code Slot")
+        self.twoFA_code.bind("<FocusIn>", func=self.delete)
         self.twoFA_code.grid(row=1,column=1, padx=20, pady=10)
         self.btn_Confirm = Button(text="Confirm", width=43, command=...)
         self.btn_Confirm.grid(row=2, column=1, padx=20, pady=10)
