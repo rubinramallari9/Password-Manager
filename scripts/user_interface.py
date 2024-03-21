@@ -56,16 +56,17 @@ class user_interface(Tk):
         register_button.grid(row=4, column=1, pady=10,padx=50)
 
 
-        forgot_password_button = Button(login_win,text="Forgot password", width=43, command=...)
+        forgot_password_button = Button(login_win,text="Forgot password", width=43, command=self.forgot_password)
         forgot_password_button.grid(row=5,column=1, pady=20, padx=50)
 
         return login_win
+
     def register_Frame(self):
 
         register_frame = Frame(self, background=BACKGROUND_COLOR, height=700)
         register_frame.grid(column=1,row=1)
         self.current_frame.grid_remove()
-        register_frame.tkraise(self.login_win)
+        register_frame.tkraise(register_frame)
         self.current_frame = register_frame
 
         # Input
@@ -86,8 +87,6 @@ class user_interface(Tk):
         confirm_button = Button(register_frame ,text="Confirm", width=43, command=...)
         confirm_button.grid(row=4, column=1, pady = 10, padx=30)
 
-        forget_Password = Button(register_frame, text="Forgot Password", width=43, command=...)
-        forget_Password.grid(row=5, column=1, pady=10, padx=30)
 
     def main_Frame(self):
         main_win = Frame(self, background=BACKGROUND_COLOR)
@@ -115,5 +114,27 @@ class user_interface(Tk):
         cofirm_Button = Button(main_win, text="Save", width = 43)
         cofirm_Button.grid(row=4, column=1, padx = 20, pady=10, columnspan =2)
 
+    def forgot_password(self):
+        forgotPassword_frame = Frame(self, background=BACKGROUND_COLOR)
+        self.current_frame.grid_remove()
+        forgotPassword_frame.grid(row=1, column=1)
+        self.current_frame = forgotPassword_frame
+
+
+        self.user_email_F = Entry(forgotPassword_frame,   width=50)
+        self.user_email_F.insert(0,"Email Slot")
+        self.user_email_F.grid(row=1, column=1, padx = 20 , pady=10)
+
+        self.btn_send_2FA = Button(forgotPassword_frame,text="Send Code",width=43 , command=self.confirmation)
+        self.btn_send_2FA.grid(row=2, column=1, padx= 20,pady=10, columnspan=2)
+
+    def confirmation(self):
+        self.btn_send_2FA.grid_remove()
+        self.user_email_F.grid_remove()
+        self.twoFA_code = Entry(self.current_frame, width=50)
+        self.twoFA_code.insert(0,"Code Slot")
+        self.twoFA_code.grid(row=1,column=1, padx=20, pady=10)
+        self.btn_Confirm = Button(text="Confirm", width=43, command=...)
+        self.btn_Confirm.grid(row=2, column=1, padx=20, pady=10)
     def settings_Frame(self):
         settings_win = Frame(self)
