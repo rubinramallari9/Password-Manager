@@ -11,6 +11,7 @@ def check(username, email, password, function):
         if email == data[username]["email"] and password == data[username]["password"]:
             messagebox.showinfo(title="Logged On", message="You have logged successfully")
             function()
-
+        else:
+            messagebox.showerror(title="Error", message="Try again")
     except KeyError:
-        messagebox.showinfo(title="Not Found", message="Check again your account details or click 'forgot password'")
+        messagebox.showerror(title="Not Found", message="Check again your account details or click 'forgot password'")

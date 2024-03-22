@@ -1,7 +1,7 @@
 from tkinter import *
 from twofactor_a import send_verifcationCode
 from check import check
-
+from add import add_user
 
 BACKGROUND_COLOR = "#50b7ba"
 
@@ -23,6 +23,7 @@ class user_interface(Tk):
         email = self.emailEntry.get()
         password = self.passwordEntry.get()
         check(username=username_, email=email, password=password, function=self.main_Frame)
+
     def delete(self, event):
         event.widget.delete(0, END)
 
@@ -79,28 +80,30 @@ class user_interface(Tk):
         self.current_frame = register_frame
 
         # Input
-        self.new_UserName = Entry(register_frame, width=50)
-        self.new_Email = Entry(register_frame, width=50)
-        self.new_Password = Entry(register_frame, width=50)
+        new_UserName = Entry(register_frame, width=50)
+        new_Email = Entry(register_frame, width=50)
+        new_Password = Entry(register_frame, width=50)
 
-        self.new_UserName.insert(0, "username slot")
-        self.new_Email.insert(0, "email slot")
-        self.new_Password.insert(0,"password slot")
+        new_UserName.insert(0, "username slot")
+        new_Email.insert(0, "email slot")
+        new_Password.insert(0,"password slot")
 
-        self.new_UserName.grid(row=1,column=1,pady=10, padx=30)
-        self.new_Email.grid(row=2,column=1,pady=10, padx=30)
-        self.new_Password.grid(row=3, column=1, pady=10, padx=30)
+        new_UserName.grid(row=1,column=1,pady=10, padx=30)
+        new_Email.grid(row=2,column=1,pady=10, padx=30)
+        new_Password.grid(row=3, column=1, pady=10, padx=30)
 
-        self.new_UserName.bind("<FocusIn>", func=self.delete)
-        self.new_Email.bind("<FocusIn>", func=self.delete)
-        self.new_Password.bind("<FocusIn>", func=self.delete)
+        new_UserName.bind("<FocusIn>", func=self.delete)
+        new_Email.bind("<FocusIn>", func=self.delete)
+        new_Password.bind("<FocusIn>", func=self.delete)
+
 
         #Button
 
-        confirm_button = Button(register_frame ,text="Confirm", width=43, command=...)
+        confirm_button = Button(register_frame ,text="Confirm", width=43, command=lambda : add_user(username=new_UserName.get(), email=new_Email.get(), password=new_Password.get(), function=self.main_Frame))
         confirm_button.grid(row=4, column=1, pady = 10, padx=30)
 
-
+        forgetpassword_Button = Button(register_frame, text="Forgot Password", width=43, command=self.forgot_password)
+        forgetpassword_Button.grid(row=5, column=1, pady=10, padx=30)
     def main_Frame(self):
         main_win = Frame(self, background=BACKGROUND_COLOR)
         self.current_frame.grid_remove()
